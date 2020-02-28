@@ -2,29 +2,33 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
-import ListingCard from './components/ListingCard';
+import ListingList from './components/ListingList';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import Login from './components/SignInForm';
+import ListingForm from './components/ListingForm'
+import ProtectedRoute from './components/ProtectedRoute';
+import ListingDetails from './components/ListingDetails';
+
+
 
 
 
 function App() {
   return (
+    <Router>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-      <ListingCard />
+      <Switch>
+        <Route exact path='/signin' component={Login} />
+        <Route exact path='/listings' component={ListingList} />
+        <Route exact path='/listings/add' component={ListingForm} />
+        <ProtectedRoute exact path="/protected" component={ListingForm} />
+        <Route path='/listings/:id' render={props => <ListingDetails {...props} />} />
+
+      </Switch>
+
     </div>
+    </Router>
+
   );
 }
 
