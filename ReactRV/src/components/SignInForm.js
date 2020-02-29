@@ -8,6 +8,9 @@ const SignInFormContainer= styled.div`
    height: 100vh;
    background-image: url('https://wallpaperaccess.com/full/101412.jpg');
    background-size: cover;
+   font-family: adventure, script;
+font-style: normal;
+font-weight: 400;
 
 `;
 
@@ -25,17 +28,22 @@ const SignInFormDiv= styled.form`
    label {
        font-size: 4rem;
        -webkit-text-stroke: 1px white;
+       color: white;
    }
    input{
        font-size: 1rem;
        position: relative;
        top: -20%;
        right: -3%;
+       border-radius: 10px;
+       background: gray;
     }
     
     h1{
         font-size: 5rem;
         padding-top: -15rem;
+        
+        
         
         -webkit-text-stroke: 3px green;
    }
@@ -47,7 +55,7 @@ const SignInFormDiv= styled.form`
        left: 20rem;
        top: 25rem;
    }
- .anotherOne{
+ .Signup{
     width: 10rem;
     color: white;
     position: absolute;
@@ -66,6 +74,20 @@ const SignInFormDiv= styled.form`
 
 
 export default function SignInForm(){
+   
+    
+  function buttonChangeColor(){
+         
+    const SignInButton=document.querySelector('.SignIn');
+         SignInButton.style.background='transparent'
+
+    return SignInButton;
+  }
+
+  function ButtonChangeBack(){
+    const SignInButton=document.querySelector('.SignIn');
+    SignInButton.style.background= '#dc3545'
+}
     return(
         <SignInFormContainer> 
            <SignInFormDiv>
@@ -78,8 +100,8 @@ export default function SignInForm(){
                    Password :
                  <input type='text' name='password' />
                </label>
-               <Button color='danger'> Sign In </Button>
-               <Button className='anotherOne' outline color='danger'> Sign Up </Button>
+               <Button className='SignIn' color='danger'> Sign In </Button>
+               <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Sign Up </Button>
            </SignInFormDiv>
              
         </SignInFormContainer>
