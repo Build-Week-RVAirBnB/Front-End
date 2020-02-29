@@ -19,6 +19,13 @@ const ListingForm = () => {
               <input type='text' placeholder='MM/DD/YY' />
           </label>
         </div>
+        <label>
+          Number Of Guest:
+          <input 
+            name='numberOfGuest'
+            type='number'
+          />
+        </label>
       </form>
     </div>
   )
