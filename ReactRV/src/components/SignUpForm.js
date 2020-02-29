@@ -22,7 +22,7 @@ const SignUpForm = props => {
     localStorage.removeItem("token");
 
     axios
-        .post('https://rventure.herokuapp.com/auth/rv/register', credentials )
+        .post('https://cors-anywhere.herokuapp.com/http://herokuapp.com/auth/rv/register/', credentials )
         .then(res => {
             // localStorage.setItem("token", res.data.payload);
             // props.history.push("/protected");
