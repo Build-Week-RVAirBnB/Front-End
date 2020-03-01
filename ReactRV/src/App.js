@@ -16,6 +16,7 @@ import Footer from './partials/Footer';
 //Design
 import './App.css';
 import 'semantic-ui-css/semantic.min.css'
+import SignUpForm from './components/SignUpForm';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
       <Navigation />
       <Switch>
         <Route exact path='/signin' component={Login} />
+        <Route exact path='/signup' component={SignUpForm} />
         <Route exact path='/listings' component={ListingList} />
         <Route exact path='/listings/add' component={ListingForm} />
         <ProtectedRoute exact path="/protected" component={ListingForm} />
