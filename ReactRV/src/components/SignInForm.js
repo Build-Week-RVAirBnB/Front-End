@@ -20,15 +20,17 @@ const SignInFormDiv= styled.form`
    width: 50%;
    background: rgba(0,0,0,0.7);
    position: relative;
-   top: 8rem;
+   top: 10rem;
    display: flex;
+   
    flex-direction: column;
-   padding-top: 3rem;
+   padding-top: 5rem;
    
    label {
        font-size: 4rem;
        -webkit-text-stroke: 1px white;
        color: white;
+       margin-top: 2rem;
    }
    input{
        font-size: 1rem;
@@ -100,8 +102,8 @@ export default function SignInForm(){
                    Password :
                  <input type='text' name='password' />
                </label>
-               <Button className='SignIn' color='danger'> Sign In </Button>
-               <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Sign Up </Button>
+               <Button className='SignIn' color='danger'> Log In </Button>
+               <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Register </Button>
            </SignInFormDiv>
              
         </SignInFormContainer>
