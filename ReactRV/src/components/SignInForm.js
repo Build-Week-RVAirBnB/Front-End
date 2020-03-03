@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
+
 import styled from 'styled-components'
 import {Button} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 const SignInFormContainer= styled.div`
@@ -75,8 +78,44 @@ const SignInFormDiv= styled.form`
 
 
 
-export default function SignInForm(){
+export default function SignInForm(props){
    
+    const [credentials, setCredentials] = useState(
+        { 
+            username: '', 
+            password:''
+        });
+
+    localStorage.removeItem("token");
+
+    const handleChange = e => {
+
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        });
+        console.log(credentials);
+      };
+
+
+    const login = e => {
+        e.preventDefault();
+
+        axios
+        .post('https://cors-anywhere.herokuapp.com/http://rventure.herokuapp.com/auth/rv/login/', credentials )
+        .then(res => {
+            localStorage.setItem("token", res.data.payload);
+            // props.history.push("/protected");
+            console.log('response',res);
+            console.log('localstorage', localStorage);
+          })
+          .catch(err => {
+            localStorage.removeItem("token");
+            console.log("invalid login: ", err);
+          });
+    }
+     
+
     
   function buttonChangeColor(){
          
@@ -84,28 +123,33 @@ export default function SignInForm(){
          SignInButton.style.background='transparent'
 
     return SignInButton;
-  }
+     }
 
+  
+  
   function ButtonChangeBack(){
     const SignInButton=document.querySelector('.SignIn');
     SignInButton.style.background= '#dc3545'
-}
+    }
+
+
     return(
         <SignInFormContainer> 
-           <SignInFormDiv>
+           <SignInFormDiv onSubmit={login}>
                <h1> Adventures awaits you</h1>
                <label htmlFor=''>
                    Username :
-                <input type='text' name='username'/>
+                <input type='text' name='username' onChange={handleChange} />
                </label>
                <label htmlFor=''>
                    Password :
-                 <input type='text' name='password' />
+                 <input type='text' name='password' onChange={handleChange}/>
                </label>
-               <Button className='SignIn' color='danger'> Log In </Button>
+               <Button className='SignIn' color='danger' type='submit'> Log In </Button>
                <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Register </Button>
            </SignInFormDiv>
              
         </SignInFormContainer>
     )
 }
+
