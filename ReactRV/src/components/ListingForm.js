@@ -33,6 +33,30 @@ const ListingForm = () => {
                   <input type='checkbox' />
                 </label>
               </div>
+              <div>
+                <label>
+                  Waste plumbing:
+                  <input type='checkbox' />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Water:
+                  <input type='checkbox' />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Wifi:
+                  <input type='checkbox' />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Pet friendly:
+                  <input type='checkbox' />
+                </label>
+              </div>
             </div>
           </label>
         </div>
