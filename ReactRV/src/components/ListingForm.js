@@ -6,17 +6,34 @@ const ListingForm = () => {
       <h1>Book Your Adventure Here!</h1>
       <form>
         <label>
-          Where To?
-            <input type='text' placeholder='Where to?' />
+          <div>
+            Where is the space located?
+          </div>
+          <div>
+            <input type='text' placeholder='Street address' />
+          </div>
+          <div>
+            <input type='text' placeholder='Apt., suite (optional)' />
+          </div>
+          <div>
+            <input type='text' placeholder='City' />
+            <input type='text' placeholder='State' />
+          </div>
+          <div>
+            <input type='text' placeholder='Zip' />
+          </div>
         </label>
         <div>
           <label>
-            Check-In:
-              <input type='text' placeholder='MM/DD/YY' />
-          </label>
-          <label>
-            Check-Out:
-              <input type='text' placeholder='MM/DD/YY' />
+            What amenities do you offer?
+            <div>
+              <div>
+                <label>
+                  Electric hookups:
+                  <input type='checkbox' />
+                </label>
+              </div>
+            </div>
           </label>
         </div>
         <label>
