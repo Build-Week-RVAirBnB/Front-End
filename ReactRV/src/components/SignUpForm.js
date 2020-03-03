@@ -7,6 +7,7 @@ const SignUpForm = props => {
   // when you have handled the token, navigate to the BubblePage route
 
   const [credentials, setCredentials] = useState({ username: '', password:''});
+  const [message, setMessage] = useState('');
 
   const handleChange = e => {
 
@@ -20,6 +21,7 @@ const SignUpForm = props => {
   const login = e => {
     e.preventDefault();
     localStorage.removeItem("token");
+    setMessage('Please wait....');
 
     axios
         .post('https://cors-anywhere.herokuapp.com/http://herokuapp.com/auth/rv/register/', credentials )
@@ -27,10 +29,14 @@ const SignUpForm = props => {
             // localStorage.setItem("token", res.data.payload);
             // props.history.push("/protected");
             console.log('response',res);
+            console.log(res.config.data)
+            setMessage("user has been created");
+
           })
           .catch(err => {
             // localStorage.removeItem("token");
             console.log("invalid login: ", err);
+            setMessage(err);
           });
   }
 
@@ -49,8 +55,9 @@ const SignUpForm = props => {
             value={credentials.password}
             onChange={handleChange}
           />
-            <button>Log in</button>
+            <button>Sign-up</button>
           </form>
+          <h1>{message}</h1>
         </div>
       );
 };
