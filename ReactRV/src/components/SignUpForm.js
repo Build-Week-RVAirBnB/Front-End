@@ -6,8 +6,19 @@ const SignUpForm = props => {
   // make a post request to retrieve a token from the api
   // when you have handled the token, navigate to the BubblePage route
 
-  const [credentials, setCredentials] = useState({ username: '', password:''});
-  const [message, setMessage] = useState('');
+  const [credentials, setCredentials] = useState(
+    { 
+      username: '',
+      password: ''
+    });
+
+    //username & password req, 
+    //email, phone number as optional 
+
+    //primary keys: user ID
+    //foreign key: listing/owner
+  
+    const [message, setMessage] = useState('');
 
   const handleChange = e => {
 
@@ -24,7 +35,7 @@ const SignUpForm = props => {
     setMessage('Please wait....');
 
     axios
-        .post('https://cors-anywhere.herokuapp.com/http://herokuapp.com/auth/rv/register/', credentials )
+        .post('https://rventure.herokuapp.com/auth/landowner/register/', credentials )
         .then(res => {
             // localStorage.setItem("token", res.data.payload);
             // props.history.push("/protected");
@@ -36,7 +47,7 @@ const SignUpForm = props => {
           .catch(err => {
             // localStorage.removeItem("token");
             console.log("invalid login: ", err);
-            setMessage(err);
+            // setMessage(err);
           });
   }
 

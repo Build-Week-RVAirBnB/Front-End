@@ -102,7 +102,7 @@ export default function SignInForm(props){
         e.preventDefault();
 
         axios
-        .post('https://cors-anywhere.herokuapp.com/http://rventure.herokuapp.com/auth/rv/login/', credentials )
+        .post('https://rventure.herokuapp.com/auth/landowner/login/', credentials )
         .then(res => {
             localStorage.setItem("token", res.data.payload);
             // props.history.push("/protected");
