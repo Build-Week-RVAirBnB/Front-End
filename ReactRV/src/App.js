@@ -20,14 +20,20 @@ import SignUpForm from './components/SignUpForm';
 
 //Contexts
 import { UserContext } from "./contexts/UserContext";
+import { ListingContext } from './contexts/ListingsContext';
 
 
 function App() {
   const [user, setUser] = useState({});
 
+
   useEffect(() => {
-    setUser({ username: 'Pete', userID: '1', reservations:''})
+    setUser({ username: 'Pete', userID: '1', reservations:''});
   }, []);
+
+  // MVP req: location, description, price per day, photo
+// optional: listingID, ownerID, amenaties
+// reservation for RV owner: listing ID, date, ownerID
 
   console.log(UserContext);
 
