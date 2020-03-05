@@ -4,17 +4,19 @@ import axios from 'axios';
 const ListingForm = () => {
   const [listing, setListing] = useState('')
 
-  const handleChange = ev => {
+  const handleChange = e => {
     // console.log(ev.target.value)
+    e.preventDefault()
   };
 
   const handleSubmit = e => {
     e.preventDefault();
 
     axios
-      .post(`https://rventure.herokuapp.com/api/listing/:id`, setListing)
+      .post(`https://rventure.herokuapp.com/api/listing/:id`, listing)
       .then(res => {
         console.log(res)
+        setListing(res.data)
       })
       .catch(err => console.log(err))
   };
@@ -124,7 +126,7 @@ const ListingForm = () => {
         </label>
         </div>
         <div>
-          <button>Submit Listing</button>
+          <button type="submit">Submit Listing</button>
         </div>
       </form>
     </div>
