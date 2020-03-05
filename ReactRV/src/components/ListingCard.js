@@ -1,7 +1,11 @@
 import React from 'react'
 import { Card, Icon, Image, Segment } from 'semantic-ui-react'
 
-//MVP: location, description, price per day, photo
+// MVP req: location, description, price per day, photo
+// optional: listingID, ownerID, amenaties
+// reservation for RV owner: listing ID, date, ownerID
+
+
 
 const ListingCard = () => (
   <Card color='red'>

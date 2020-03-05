@@ -1,5 +1,5 @@
 //React
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 //Components
@@ -18,25 +18,38 @@ import './App.css';
 import 'semantic-ui-css/semantic.min.css'
 import SignUpForm from './components/SignUpForm';
 
+//Contexts
+import { UserContext } from "./contexts/UserContext";
+
 
 function App() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    setUser({ username: 'Pete', userID: '1', reservations:''})
+  }, []);
+
+  console.log(UserContext);
+
+
   return (
-    <Router>
-    <div className="App">
-      <Navigation />
-      <Switch>
-        <Route exact path='/signin' component={Login} />
-        <Route exact path='/signup' component={SignUpForm} />
-        <Route exact path='/listings' component={ListingList} />
-        <Route exact path='/listings/add' component={ListingForm} />
-        <ProtectedRoute exact path="/protected" component={ListingForm} />
-        <Route path='/listings/:id' render={props => <ListingDetails {...props} />} />
+    <UserContext.Provider value={user}>
+      <Router>
+      <div className="App">
+        <Navigation />
+        <Switch>
+          <Route exact path='/signin' component={Login} />
+          <Route exact path='/signup' component={SignUpForm} />
+          <Route exact path='/listings' component={ListingList} />
+          <Route exact path='/listings/add' component={ListingForm} />
+          <ProtectedRoute exact path="/protected" component={ListingForm} />
+          <Route path='/listings/:id' render={props => <ListingDetails {...props} />} />
 
-      </Switch>
-      <Footer />
-    </div>
-    </Router>
-
+        </Switch>
+        <Footer />
+      </div>
+      </Router>
+    </UserContext.Provider>
   );
 }
 
