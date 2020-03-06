@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button, Input } from 'semantic-ui-react';
+
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import axios from 'axios';
 
@@ -132,19 +134,20 @@ const ListingForm = () => {
         
         <div>
           <label>
-            Description <input 
-              type='text' 
-              placeholder=''
+            Description    
+            <Input 
+              placeholder='' 
               onChange={changeHandler} 
               name='description'
               value={listing.description}
             />
-        </label>
+          </label>
         </div>
 
         <div>
           <label>
-            Location <input 
+            Location 
+            <Input 
               type='text' 
               placeholder=''
               onChange={changeHandler} 
@@ -156,7 +159,8 @@ const ListingForm = () => {
 
         <div>
           <label>
-            Price per day ($) <input 
+            Price per day ($) 
+            <Input 
               type='text' 
               placeholder=''
               onChange={changeHandler} 
@@ -168,7 +172,8 @@ const ListingForm = () => {
 
         <div>
           <label>
-          Photo <input 
+          Photo 
+            <Input 
               type='text' 
               placeholder='http://url.com/img.png'
               onChange={changeHandler} 
@@ -177,11 +182,8 @@ const ListingForm = () => {
             />
         </label>
         </div>
-
-
-
         <div>
-          <button type="submit">Submit Listing</button>
+          <Button basic>Submit Listing</Button>
         </div>
       </form>
       <br />
