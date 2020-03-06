@@ -74,10 +74,6 @@ const SignInFormDiv= styled.form`
 `;
 
 
-
-
-
-
 export default function SignInForm(props){
    
     const [credentials, setCredentials] = useState(
@@ -104,10 +100,13 @@ export default function SignInForm(props){
         axios
         .post('https://rventure.herokuapp.com/auth/landowner/login/', credentials )
         .then(res => {
-            localStorage.setItem("token", res.data.payload);
+            localStorage.setItem("token", res.data.token);
             // props.history.push("/protected");
             console.log('response',res);
             console.log('localstorage', localStorage);
+
+            //update contextAPI with user
+
           })
           .catch(err => {
             localStorage.removeItem("token");

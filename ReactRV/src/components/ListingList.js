@@ -1,13 +1,26 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../contexts/UserContext'
 import ListingCard from './ListingCard';
 import { Card, Header, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { axiosWithAuth } from '../utils/AxiosWithAuth';
 
 
 const ListingList = () => {
 
   const user = useContext(UserContext);
+  const [listings, setListings] = useState([]);
+
+
+
+  useEffect(() => {
+    axiosWithAuth().get('https://rventure.herokuapp.com/api/listing/')
+    .then(res => {
+        console.log('response', res);
+        setListings(res.data);
+    })
+  }, []);
+
 
   return (
     <div>
@@ -16,18 +29,10 @@ const ListingList = () => {
       <Header size='huge'>We're your melting pot! </Header>
       <Link to='/listings/add'>Land Onwers: Add you spot here</Link>
 
-      <Card.Group itemsPerRow={6} className='listing-list' stackable>
-
-      {/* this is where we will map over the array of listings as pass into ListingCard */}
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
-      <ListingCard />
+      <Card.Group itemsPerRow={5} className='listing-list' stackable>
+      {listings.map(item => (
+              <ListingCard listing={item} />
+      ))}
 
       </Card.Group>
     </div>
