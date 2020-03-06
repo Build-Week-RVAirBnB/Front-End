@@ -1,31 +1,45 @@
 import React, { useState } from 'react';
+import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import axios from 'axios';
 
 const ListingForm = () => {
-  const [listing, setListing] = useState('')
+  
+  const [listing, setListing] = useState({
+    landownerid: 2,
+    description: '',
+    price: '',
+    location: '',
+    photo: ''
+  })
 
-  const handleChange = e => {
-    // console.log(ev.target.value)
-    e.preventDefault()
+  const changeHandler = ev => {
+    console.log('value', ev.target.value)
+    
+    let value = ev.target.value;
+
+    setListing({
+      ...listing,
+      [ev.target.name]: value
+    });
+
+    console.log('object', listing);
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+    console.log('listing',listing);
 
-    axios
-      .post(`https://rventure.herokuapp.com/api/listing/:id`, listing)
-      .then(res => {
-        console.log(res)
-        setListing(res.data)
+    axiosWithAuth().post(`https://rventure.herokuapp.com/api/listing/`, listing)
+    .then(res => {
+        console.log('res', res);
       })
-      .catch(err => console.log(err))
   };
 
   return (
     <div>
       <h1>List Someone's Adventure Here!</h1>
       <form onSubmit={handleSubmit}>
-        <label>
+        {/* <label>
           <div>
             Where is the space located?
           </div>
@@ -67,7 +81,7 @@ const ListingForm = () => {
               onChange={handleChange} 
             />
           </div>
-        </label>
+        </label> */}
         {/* <div>
           <label>
             What amenities do you offer?
@@ -115,20 +129,63 @@ const ListingForm = () => {
             </div>
           </label>
         </div> */}
+        
         <div>
           <label>
-            Number Of Guest:
-            <input 
-              name='numberOfGuest'
-              type='number'
-              value={listing.numberOfGuest}
+            Description <input 
+              type='text' 
+              placeholder=''
+              onChange={changeHandler} 
+              name='description'
+              value={listing.description}
             />
         </label>
         </div>
+
+        <div>
+          <label>
+            Location <input 
+              type='text' 
+              placeholder=''
+              onChange={changeHandler} 
+              name='location'
+              value={listing.location}
+            />
+        </label>
+        </div>
+
+        <div>
+          <label>
+            Price per day ($) <input 
+              type='text' 
+              placeholder=''
+              onChange={changeHandler} 
+              name='price'
+              value={listing.price}
+            />
+        </label>
+        </div>
+
+        <div>
+          <label>
+          Photo <input 
+              type='text' 
+              placeholder='http://url.com/img.png'
+              onChange={changeHandler} 
+              name='photo'
+              value={listing.photo}
+            />
+        </label>
+        </div>
+
+
+
         <div>
           <button type="submit">Submit Listing</button>
         </div>
       </form>
+      <br />
+      <br />
     </div>
   )
 }
