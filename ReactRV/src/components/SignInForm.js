@@ -20,7 +20,7 @@ font-weight: 400;
 const SignInFormDiv= styled.form`
    margin: 0 auto;
    height: 60%;
-   width: 50%;
+   max-width: 50%;
    background: rgba(0,0,0,0.7);
    position: relative;
    top: 10rem;
@@ -30,22 +30,23 @@ const SignInFormDiv= styled.form`
    padding-top: 5rem;
    
    label {
-       font-size: 4rem;
+       font-size: 3rem;
        -webkit-text-stroke: 1px white;
        color: white;
        margin-top: 2rem;
    }
    input{
-       font-size: 1rem;
+       font-size: 2rem;
        position: relative;
        top: -20%;
        right: -3%;
        border-radius: 10px;
-       background: gray;
+       background: white;
+       color: black;
     }
     
     h1{
-        font-size: 5rem;
+        transform: scale(2);
         padding-top: -15rem;
         
         
