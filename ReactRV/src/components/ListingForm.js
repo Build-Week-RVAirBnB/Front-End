@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const ListingForm = () => {
   const [listing, setListing] = useState('')
 
-  const changeHandler = ev => {
-    console.log(ev.target.value)
+  const handleChange = ev => {
+    // console.log(ev.target.value)
   };
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    axios
+      .post(`https://rventure.herokuapp.com/api/listing/:id`, setListing)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
   };
 
   return (
@@ -24,7 +32,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Street Address'
               value={listing.streetAddress}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -32,7 +40,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Apt., suite (optional)' 
               value={listing.apt}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -40,13 +48,13 @@ const ListingForm = () => {
               type='text' 
               placeholder='City' 
               value={listing.city}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
             <input 
               type='text' 
               placeholder='State' 
               value={listing.state}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -54,7 +62,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Zip' 
               value={listing.zip}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
         </label>
