@@ -1,6 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import * as Yup from 'yup'
+import {
+  Button,
+  Divider,
+  Grid,
+  Header,
+  Icon,
+  Segment,
+  Image,
+  Dropdown
+} from 'semantic-ui-react'
 
 
 const SignUpForm = props => {
@@ -12,6 +23,8 @@ const SignUpForm = props => {
       username: '',
       password: ''
     });
+
+  const [endpoint, setEndpoint] = useState('https://rventure.herokuapp.com/auth/rv/register/');
 
     //username & password req, 
     //email, phone number as optional 
@@ -28,7 +41,11 @@ const SignUpForm = props => {
         [e.target.name]: e.target.value
     });
     console.log(credentials);
+
+    console.log(endpoint)
   };
+
+  const handleChangeDropdown = (e, { value }) => setEndpoint(value)
 
   const login = e => {
     e.preventDefault();
@@ -36,7 +53,7 @@ const SignUpForm = props => {
     setMessage('Please wait....');
 
     axios
-        .post('https://rventure.herokuapp.com/auth/landowner/register/', credentials )
+        .post(endpoint, credentials )
         .then(res => {
             // localStorage.setItem("token", res.data.payload);
             // props.history.push("/protected");
@@ -52,24 +69,72 @@ const SignUpForm = props => {
           });
   }
 
+  const accountOptions = [
+    {
+      key: 'RVOwner',
+      text: 'I need a spot for my RV',
+      value: 'https://rventure.herokuapp.com/auth/rv/register/',
+    },
+    {
+      key: 'LandOwner',
+      text: 'I have land to rent',
+      value: 'https://rventure.herokuapp.com/auth/landowner/register/',
+    }
+  ];
+
   return (
     <div>
+      <Segment placeholder>
+    <Grid columns={4} stackable textAlign='center' >
+      <Divider vertical><Icon name='bus' /></Divider>
+      <Grid.Row  verticalAlign='middle'>
+        <Grid.Column floated='right'>
+        <Image src='https://andrecolon.github.io/Marketing-page/img/rv-logo.png' size='medium' centered />
+          <Header>Already have an account?</Header>
+          <Link to='/signin'><Button primary>Log-in here</Button></Link>
+
+        </Grid.Column>
+
+        <Grid.Column floated='left'>
+          <Header icon>
+          <Icon name='signup' />
+            Register
+          </Header>
           <form onSubmit={login}>
-            <input
+         <Dropdown
+            placeholder='Select account type'
+            name='signUpType'
+            onChange={handleChangeDropdown}
+            selection
+            options={accountOptions} 
+          />
+          <br />
+          <br />
+          <label>
+            Choose a new username: <input
             type="text"
             name="username"
             value={credentials.username}
             onChange={handleChange}
-          />
-          <input
+          /></label>
+          <br />
+          <label>Choose a new password: <input
             type="password"
             name="password"
             value={credentials.password}
             onChange={handleChange}
-          />
-            <button>Sign-up</button>
+          /></label>
+          <br />
+          <br />
+          <Button color='red'>Sign-up</Button>
           </form>
           <h1>{message}</h1>
+
+           
+        </Grid.Column>
+      </Grid.Row>
+    </Grid>
+  </Segment>
         </div>
       );
 };
