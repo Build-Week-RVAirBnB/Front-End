@@ -5,7 +5,6 @@ import { Menu } from "semantic-ui-react";
 const Navigation = () => {
   return (
     <Menu>
-      <Menu.Item as={Link} to='/' name='home' />
       <Menu.Item as={Link} to='/listings' name='listings' />
       <Menu.Menu position='right'>
         <Menu.Item as={Link} to='/logout' name='logout' />
