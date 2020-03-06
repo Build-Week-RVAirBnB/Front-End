@@ -35,6 +35,13 @@ const ListingForm = () => {
     .then(res => {
         console.log('res', res);
       })
+
+      setListing({
+        description: '',
+        price: '',
+        location: '',
+        photo: ''
+      })
   };
 
   return (
