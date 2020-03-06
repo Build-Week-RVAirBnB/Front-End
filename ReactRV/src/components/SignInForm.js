@@ -137,14 +137,26 @@ export default function SignInForm(props){
         <SignInFormContainer> 
            <SignInFormDiv onSubmit={login}>
                <h1> Adventures awaits you</h1>
-               <label htmlFor=''>
+               <label htmlFor='username'>
                    Username :
                 <input type='text' name='username' onChange={handleChange} />
                </label>
-               <label htmlFor=''>
+               <label htmlFor='password'>
                    Password :
                  <input type='text' name='password' onChange={handleChange}/>
                </label>
+               <labeL htmlFor="dropdownlist">
+                   I am : 
+                   
+                   <select name="dropdownList" id="type">
+                       <option value="landowner"> Land Owner</option>
+                       <option value="RVowner"> RV Owner </option>
+
+                   </select>
+                   
+
+               </labeL>
+
                <Button className='SignIn' color='danger' type='submit'> Log In </Button>
                <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Register </Button>
            </SignInFormDiv>
