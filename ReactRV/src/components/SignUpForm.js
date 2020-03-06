@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+<<<<<<< HEAD
 import {
   Button,
   Divider,
@@ -12,6 +13,9 @@ import {
   Image,
   Dropdown
 } from 'semantic-ui-react'
+=======
+import * as Yup from 'yup'
+>>>>>>> e789d0d920c8f5643d29949cd9c27f795cde8e2d
 
 
 const SignUpForm = props => {

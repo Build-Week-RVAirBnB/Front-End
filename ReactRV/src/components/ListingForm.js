@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
+import axios from 'axios';
 
 const ListingForm = () => {
   
@@ -32,7 +33,6 @@ const ListingForm = () => {
     .then(res => {
         console.log('res', res);
       })
-
   };
 
   return (
@@ -48,7 +48,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Street Address'
               value={listing.streetAddress}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -56,7 +56,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Apt., suite (optional)' 
               value={listing.apt}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -64,13 +64,13 @@ const ListingForm = () => {
               type='text' 
               placeholder='City' 
               value={listing.city}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
             <input 
               type='text' 
               placeholder='State' 
               value={listing.state}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
           <div>
@@ -78,7 +78,7 @@ const ListingForm = () => {
               type='text' 
               placeholder='Zip' 
               value={listing.zip}
-              onChange={changeHandler} 
+              onChange={handleChange} 
             />
           </div>
         </label> */}
