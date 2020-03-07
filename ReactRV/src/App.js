@@ -9,6 +9,7 @@ import ListingForm from './components/ListingForm'
 import ProtectedRoute from './components/ProtectedRoute';
 import ListingDetails from './components/ListingDetails';
 import ListingList from './components/ListingList';
+import Logout from './components/Logout';
 
 //Common Components
 import Navigation from "./partials/Navigation";
