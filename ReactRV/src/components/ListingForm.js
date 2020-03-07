@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
-import axios from 'axios';
+import { UserContext } from '../contexts/UserContext';
+
 
 const ListingForm = () => {
+
+  const { user, addUserID } = useContext(UserContext); 
+
   
   const [listing, setListing] = useState({
-    landownerid: 2,
+    landownerid: user.userID,
     description: '',
     price: '',
     location: '',

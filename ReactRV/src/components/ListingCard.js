@@ -1,5 +1,7 @@
 import React from 'react'
 import { Card, Icon, Image, Segment } from 'semantic-ui-react'
+import { axiosWithAuth } from '../utils/AxiosWithAuth';
+
 
 // MVP req: location, description, price per day, photo
 // optional: listingID, ownerID, amenaties
@@ -10,6 +12,28 @@ import { Card, Icon, Image, Segment } from 'semantic-ui-react'
 const ListingCard = (props) => {
 
   console.log('props', props);
+
+  const handleRemoveListing = (id) => {
+    const urlDelete = 'https://rventure.herokuapp.com/api/listing/'+id ;
+    console.log('remove listing', urlDelete);
+
+    axiosWithAuth().delete(urlDelete)
+    .then(res => {
+        console.log('updated after delete', res);
+  })
+}
+
+const handleReserveListing = (id) => {
+  const urlReserve = 'https://rventure.herokuapp.com/api/listing/'+id ;
+  console.log('remove listing', urlReserve);
+
+  axiosWithAuth().post(urlReserve, 1)
+  .then(res => {
+      console.log('response after reserve', res);
+})
+}
+
+
 
   return (
   <Card color='red'>
@@ -24,6 +48,9 @@ const ListingCard = (props) => {
       <Card.Description>
       {props.listing.description}
       </Card.Description>
+      <a href="#" onClick={() => handleRemoveListing(props.listing.id)} className="myButton">DELETE</a> <br />
+      <a href="#" onClick={() => handleReserveListing(props.listing.id)} className="myButton">Reserve</a>
+
     </Card.Content>   
   </Card>
   )
