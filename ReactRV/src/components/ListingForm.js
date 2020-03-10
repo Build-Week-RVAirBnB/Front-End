@@ -1,3 +1,4 @@
+import { Button, Input } from 'semantic-ui-react';
 import React, { useState, useContext } from 'react';
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
@@ -36,6 +37,13 @@ const ListingForm = () => {
     axiosWithAuth().post(`https://rventure.herokuapp.com/api/listing/`, listing)
     .then(res => {
         console.log('res', res);
+      })
+
+      setListing({
+        description: '',
+        price: '',
+        location: '',
+        photo: ''
       })
   };
 
@@ -136,19 +144,20 @@ const ListingForm = () => {
         
         <div>
           <label>
-            Description <input 
-              type='text' 
-              placeholder=''
+            Description    
+            <Input 
+              placeholder='' 
               onChange={changeHandler} 
               name='description'
               value={listing.description}
             />
-        </label>
+          </label>
         </div>
 
         <div>
           <label>
-            Location <input 
+            Location 
+            <Input 
               type='text' 
               placeholder=''
               onChange={changeHandler} 
@@ -160,7 +169,8 @@ const ListingForm = () => {
 
         <div>
           <label>
-            Price per day ($) <input 
+            Price per day ($) 
+            <Input 
               type='text' 
               placeholder=''
               onChange={changeHandler} 
@@ -172,7 +182,8 @@ const ListingForm = () => {
 
         <div>
           <label>
-          Photo <input 
+          Photo 
+            <Input 
               type='text' 
               placeholder='http://url.com/img.png'
               onChange={changeHandler} 
@@ -181,11 +192,8 @@ const ListingForm = () => {
             />
         </label>
         </div>
-
-
-
         <div>
-          <button>Submit Listing</button>
+          <Button basic>Submit Listing</Button>
         </div>
       </form>
       <br />
