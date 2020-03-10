@@ -10,6 +10,7 @@ const ListingList = () => {
 
   const user = useContext(UserContext);
   const [listings, setListings] = useState([]);
+  console.log('first load', listings)
 
 
 
@@ -17,7 +18,7 @@ const ListingList = () => {
     axiosWithAuth().get('https://rventure.herokuapp.com/api/listing/')
     .then(res => {
         console.log('response', res);
-        setListings(res.data);
+        setListings(res.data.listings);
     })
   }, []);
 
