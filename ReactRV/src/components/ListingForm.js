@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-import React, { useState } from 'react';
 import { Button, Input } from 'semantic-ui-react';
-
-=======
 import React, { useState, useContext } from 'react';
->>>>>>> 8d48963182cca2eb894fb947523db67b0a11d479
 import { axiosWithAuth } from '../utils/AxiosWithAuth';
 import { UserContext } from '../contexts/UserContext';
 
