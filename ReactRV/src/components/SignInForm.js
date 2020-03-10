@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 
 import styled from 'styled-components'
 import {Button} from 'reactstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { UserContext } from '../contexts/UserContext';
 
 
 const SignInFormContainer= styled.div`
@@ -76,6 +76,9 @@ const SignInFormDiv= styled.form`
 
 
 export default function SignInForm(props){
+
+    const { user, addUserID } = useContext(UserContext); 
+
    
     const [credentials, setCredentials] = useState(
         { 
@@ -84,6 +87,8 @@ export default function SignInForm(props){
         });
 
     localStorage.removeItem("token");
+
+
 
     const handleChange = e => {
 
@@ -98,6 +103,9 @@ export default function SignInForm(props){
     const login = e => {
         e.preventDefault();
 
+        // https://rventure.herokuapp.com/auth/rv/login/
+        // https://rventure.herokuapp.com/auth/landowner/login/
+
         axios
         .post('https://rventure.herokuapp.com/auth/landowner/login/', credentials )
         .then(res => {
@@ -105,8 +113,9 @@ export default function SignInForm(props){
             // props.history.push("/protected");
             console.log('response',res);
             console.log('localstorage', localStorage);
-
-            //update contextAPI with user
+            //add id and username to global state
+            addUserID({username: res.data.username, userID: res.data.id})
+            console.log(user);
 
           })
           .catch(err => {
@@ -145,7 +154,7 @@ export default function SignInForm(props){
                    Password :
                  <input type='text' name='password' onChange={handleChange}/>
                </label>
-               <labeL htmlFor="dropdownlist">
+               <label htmlFor="dropdownlist">
                    I am : 
                    
                    <select name="dropdownList" id="type">
@@ -155,7 +164,7 @@ export default function SignInForm(props){
                    </select>
                    
 
-               </labeL>
+               </label>
 
                <Button className='SignIn' color='danger' type='submit'> Log In </Button>
                <Button className='Signup' outline color='danger' onMouseEnter={buttonChangeColor} onMouseLeave={ButtonChangeBack}> Register </Button>
